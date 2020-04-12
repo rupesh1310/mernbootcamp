@@ -1,4 +1,6 @@
 const mongooose = require("mongoose");
+const crypto = require("crypto");
+const uuidv1 = require("uuid/v1");
 
 var userSchema = new mongoose.Schema({
   name: {
@@ -22,7 +24,7 @@ var userSchema = new mongoose.Schema({
     type: String,
     trime: true,
   },
-  // TODO:come back here
+
   encry_password: {
     type: String,
     required: true,
@@ -38,9 +40,24 @@ var userSchema = new mongoose.Schema({
   },
 });
 
+userSchema
+  .virtual("password")
+  .set(function (password) {
+    this._password = password;
+    this.salt = uuidv1();
+    this.encry_password = this.securePassword(password);
+  })
+  .get(function () {
+    return this._password;
+  });
+
 //creating methods
 
 userSchema.method = {
+  autheticate: function (plainpassword) {
+    return this.securePassword(plainpassword) === this.encry_password;
+  },
+
   securePassword: function (plainpassword) {
     if (!password) return "";
     try {
