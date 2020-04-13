@@ -56,13 +56,13 @@ userSchema
 
 //creating methods
 
-userSchema.method = {
+userSchema.methods = {
   autheticate: function (plainpassword) {
     return this.securePassword(plainpassword) === this.encry_password;
   },
 
   securePassword: function (plainpassword) {
-    if (!password) return "";
+    if (!plainpassword) return "";
     try {
       return crypto
         .createHmac("sha256", this.salt)
