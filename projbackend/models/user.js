@@ -1,4 +1,4 @@
-const mongooose = require("mongoose");
+var mongoose = require("mongoose");
 const crypto = require("crypto");
 const uuidv1 = require("uuid/v1");
 
@@ -10,7 +10,7 @@ var userSchema = new mongoose.Schema(
       maxlength: 32,
       trim: true,
     },
-    lastName: {
+    lastname: {
       type: String,
       maxlength: 32,
       trim: true,
@@ -23,9 +23,8 @@ var userSchema = new mongoose.Schema(
     },
     userinfo: {
       type: String,
-      trime: true,
+      trim: true,
     },
-
     encry_password: {
       type: String,
       required: true,
@@ -54,8 +53,6 @@ userSchema
     return this._password;
   });
 
-//creating methods
-
 userSchema.methods = {
   autheticate: function (plainpassword) {
     return this.securePassword(plainpassword) === this.encry_password;
@@ -74,4 +71,4 @@ userSchema.methods = {
   },
 };
 
-module.exports = mongooose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
