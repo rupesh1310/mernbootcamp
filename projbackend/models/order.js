@@ -8,8 +8,10 @@ const ProductCartSchema = new mongoose.Schema({
   },
   name: String,
   count: Number,
-  pric: Number,
+  price: Number,
 });
+
+const ProductCart = mongoose.model("ProductCart", ProductCartSchema);
 
 const OrderSchema = new mongoose.Schema(
   {
@@ -25,3 +27,7 @@ const OrderSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+const Order = mongoose.model("Order", OrderSchema);
+
+module.exports = { Order, ProductCart };
