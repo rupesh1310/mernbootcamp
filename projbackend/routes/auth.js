@@ -23,6 +23,5 @@ router.post(
 );
 
 router.get("/signout", signout);
-// router.get("/signin", signin);
 
 module.exports = router;
