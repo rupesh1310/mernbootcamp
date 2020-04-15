@@ -153,6 +153,17 @@ exports.getAllProducts = (req, res) => {
     });
 };
 
+exports.getAllUniqueCategories = (req, res, next) => {
+  Product.distinct("category", {}, (err, category) => {
+    if (err) {
+      return res.status(400).json({
+        error: "NO category found!",
+      });
+    }
+    res.json(category);
+  });
+};
+
 exports.updateStock = (req, res, next) => {
   let myOperations = req.body.order.products.map((prod) => {
     return {
