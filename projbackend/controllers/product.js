@@ -24,10 +24,10 @@ exports.createProduct = (req, res) => {
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
-        error: "Probelm with image",
+        error: "problem with image",
       });
     }
-    // destructure the fields
+    //destructure the fields
     const { name, description, price, category, stock } = fields;
 
     if (!name || !description || !price || !category || !stock) {
@@ -48,12 +48,13 @@ exports.createProduct = (req, res) => {
       product.photo.data = fs.readFileSync(file.photo.path);
       product.photo.contentType = file.photo.type;
     }
+    // console.log(product);
 
-    // save to the DB
+    //save to the DB
     product.save((err, product) => {
       if (err) {
         res.status(400).json({
-          error: "Saving tshirt in DB failed!",
+          error: "Saving tshirt in DB failed",
         });
       }
       res.json(product);
