@@ -9,20 +9,20 @@ const Signup = () => {
     email: "",
     password: "",
     error: "",
-    success: false,
+    success: false
   });
 
   const { name, email, password, error, success } = values;
 
-  const handleChange = (name) => (event) => {
+  const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password })
-      .then((data) => {
+      .then(data => {
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
         } else {
@@ -32,7 +32,7 @@ const Signup = () => {
             email: "",
             password: "",
             error: "",
-            success: true,
+            success: true
           });
         }
       })
@@ -89,7 +89,7 @@ const Signup = () => {
             className="alert alert-success"
             style={{ display: success ? "" : "none" }}
           >
-            New account was created successfully. Please{" "}
+            New account was created successfully. Please
             <Link to="/signin">Login Here</Link>
           </div>
         </div>
