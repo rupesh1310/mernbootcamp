@@ -2,7 +2,7 @@ import React from "react";
 import ImageHelper from "./helper/ImageHelper";
 
 const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
-  const showAddToCart = (addtoCart) => {
+  const showAddToCart = addtoCart => {
     return (
       addtoCart && (
         <button
@@ -15,7 +15,7 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
     );
   };
 
-  const showRemoveFromCart = (removeFromCart) => {
+  const showRemoveFromCart = removeFromCart => {
     return (
       removeFromCart && (
         <button
