@@ -8,7 +8,7 @@ import {
 } from "./helper/adminapicall";
 import { isAutheticated } from "../auth/helper/index";
 
-const UpdateProduct = () => {
+const UpdateProduct = ({ match }) => {
   const { user, token } = isAutheticated();
 
   const [values, setValues] = useState({
@@ -46,6 +46,7 @@ const UpdateProduct = () => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
+        preloadCategories();
         setValues({
           ...values,
           name: data.name,
@@ -59,30 +60,46 @@ const UpdateProduct = () => {
     });
   };
 
+  const preloadCategories = () => {
+    getCategories().then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          categories: data,
+          formData: new FormData(),
+        });
+      }
+    });
+  };
+
   useEffect(() => {
-    preload();
+    preload(match.params.productId);
   }, []);
 
   //TODO: work on it
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    updateProduct(user._id, token, formData).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({
-          ...values,
-          name: "",
-          description: "",
-          price: "",
-          photo: "",
-          stock: "",
-          loading: false,
-          createdProduct: data.name,
-        });
+
+    updateProduct(match.params.productId, user._id, token, formData).then(
+      (data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error });
+        } else {
+          setValues({
+            ...values,
+            name: "",
+            description: "",
+            price: "",
+            photo: "",
+            stock: "",
+            loading: false,
+            createdProduct: data.name,
+          });
+        }
       }
-    });
+    );
   };
 
   const handleChange = (name) => (event) => {
@@ -96,7 +113,7 @@ const UpdateProduct = () => {
       className="alert alert-success mt-3"
       style={{ display: createdProduct ? "" : "none" }}
     >
-      <h4>{createdProduct} created successfully</h4>
+      <h4>{createdProduct} updated successfully</h4>
     </div>
   );
 
@@ -171,7 +188,7 @@ const UpdateProduct = () => {
         onClick={onSubmit}
         className="btn btn-outline-success mb-3"
       >
-        Create Product
+        Update Product
       </button>
     </form>
   );
