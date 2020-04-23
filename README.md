@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <br>
-  <img src="https://scotch-res.cloudinary.com/image/upload/w_1000,q_auto:good,f_auto/v1540545426/tzs50mjrlopv85r3qjpq.jpg" alt=" MernBootcamp" width="200"></a>
+  <img src="https://blog.crowdbotics.com/content/images/2019/05/MERN.png" alt=" MernBootcamp" width="200"></a>
   <br>
   MernBootcamp
   <br>
