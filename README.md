@@ -7,7 +7,7 @@
   MernBootcamp
   <br>
 </h1>
-<h4 align="center">An repository of keep all my learning progess of mern stack development <a href="#" target="_blank">Mern Stack Development</a>.</h4>
+<h4 align="center">An repository to keep all my learning progess of mern stack development <a href="#" target="_blank">Mern Stack Development</a>.</h4>
  <p align="center">
   <a href="#key-features">Key Features of all the Application</a> •
   <a href="#demonstration">Demonstration</a> •
