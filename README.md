@@ -1,8 +1,7 @@
 
 <h1 align="center">
   <br>
-  <img src="https://i.morioh.com/6041892b0c.png" alt=" MernBootcamp" width="600"></a>
-  <br>
+
   MernBootcamp
   <br>
 </h1>
